@@ -88,7 +88,11 @@ You should see two things happen:
     <img src="https://res.cloudinary.com/dnz16usmk/image/upload/f_auto,q_auto/v1/vd7-website/gpt4v_scraper-consolelog"   />
 </div>
 
-
+compare it to the actual site (not bad tbh): 
+<div align="center">
+    <i>vd7 website for comparison</i>
+  <img width="346" alt="Screenshot 2023-12-20 at 2 28 12 PM" src="https://github.com/vdutts7/gpt4V-scraper/assets/63992417/1bfb6faa-9ad8-4aa9-8128-820f5b0271e6">
+</div>
 
 ### Part 3: "AutoGPT" style prompting + Bing search 
 
