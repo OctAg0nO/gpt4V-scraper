@@ -15,16 +15,15 @@
 
 [![Github][github]][github-url]
 
-<img src="https://res.cloudinary.com/dnz16usmk/image/upload/f_auto,q_auto/v1/vd7-website/gpt4v-scraper"   />
 
- </div>
+</div>
 
-<br/>
 
 
 ## Table of Contents
 
   <ol>
+    <a href="#FREE-200-USD-cloud-credits">💸 FREE 200 USD cloud credits</a><br/>
     <a href="#about">📝 About</a><br/>
     <a href="#how-to-build">💻 How to build</a><br/>
     <a href="#tools-used">🔧 Tools used</a>
@@ -35,6 +34,20 @@
 
 <br/>
 
+## 💸FREE 200 USD cloud credits
+
+Click the banner to activate $200 free personal cloud credits on DigitalOcean (deploy anything).
+
+<div style="display: flex; align-items: center; justify-content: center; width: 400px;"> 
+    <a href="https://www.digitalocean.com/?refcode=2aa0ec7cfd0e&utm_campaign=Referral_Invite&utm_medium=Referral_Program&utm_source=badge">
+        <img src="https://res.cloudinary.com/dnz16usmk/image/upload/v1709301461/digitalocean-referral.png"
+            width="150"
+        />
+    </a>
+</div>
+
+
+
 ## 📝About
 
 - Automated web scraping tool for capturing full-page screenshots.
@@ -42,17 +55,59 @@
 - Designed for efficiency with customizable timeout settings.
 
 
-## 💻 How to build
+## 💻How to build
 
 ### Part 1: Screenshot + Scrape
 - Run `npm i` to install dependencies (Puppetteer libraries, see `package.json` for details).
 - Copy `.env.template` and rename this new file `.env` . Then add your `OPENAI_API_KEY`and save the file. Run `source .env` properly mount this into the environment.
-- Set up browser confguration to allow for websites that require login authentication (LinkedIn, Instagram, etc). Make sure you log in ahead of time, that way your browser agent can access content without problems. For paywalled sites, it is your choice but hey: `https://removepaywall.com/<URL>` . This is a GitHub project, not a moral essay, so decide for yourself and move on.  I will say, however, that sites such as NYT, CNN, FOX, Guardian, etc., shouldn't be misrepresenting themselves as "news" when they're making you pay for truth. But I (and you probably if you're the type of person reading a Github project description) see nothing valuable in sites like those anyways that is worth scraping. For the best browser, install Chrome Canary (log into the website of choice before continuing this next step). Then reference it in `snapshot.js` as follows:
+- Set up browser confguration to allow for websites that require login authentication (LinkedIn, Instagram, etc). Make sure you log in ahead of time, that way your browser agent can access content without problems. For paywalled sites, it is your choice but hey: `https://removepaywall.com/<URL>` . This is a GitHub project, not a moral essay, so decide for yourself and move on.  I will say, however, that sites such as NYT, CNN, FOX, Guardian, etc., shouldn't be misrepresenting themselves as "news" when they're making you pay for truth. But I (and you probably if you're the type of person reading a GitHub project description) see nothing valuable in sites like those anyways that is worth scraping. For the best browser, install Chrome Canary (log into the website of choice before continuing this next step). Then reference it in `snapshot.js` as follows:
+
+<details>
+
+<summary>
+    MacOS (using Chrome Canary)
+</summary>
+
 ```
 executablePath: '/Applications/Google\ Chrome\ Canary.app/Contents/MacOS/Google\ Chrome\ Canary',
-userDataDir: '/Users/vdutts7/Library/Application\ Support/Google/Chrome\ Canary/Default',
+
+userDataDir: '/Users/<USERNAME>/Library/Application\ Support/Google/Chrome\ Canary/Default',
 ``` 
-Replace paths with respective locations specific to your device.
+</details>
+
+<details>
+
+<summary>
+    Windows (using Chrome)
+</summary>
+
+```
+executablePath: 'C:/Program Files/Google/Chrome/Application/chrome.exe',
+
+userDataDir: 'C:/Users/<USERNAME>/AppData/Local/Google/Chrome/User Data',
+``` 
+</details>
+
+<details>
+
+<summary>
+    Linux (using Chrome)
+</summary>
+
+```
+executablePath: '/usr/bin/google-chrome',
+
+userDataDir: '/home/<USERNAME>/.config/google-chrome',
+``` 
+</details>
+
+Reference:
+- `executablePath` is the full pathname of your desktop Chrome app
+- `userDataDir` is the specific directory where Puppeteer stores user-specific data like cookies and local storage. Useful for maintaining independent browser sessions with separate user data. Ensures clean slate for each session without previous user data. Also enables concurrent automation of multiple browser sessions. Tldr; it maximizes user control and flexibility.
+- Can use Chrome or Chrome Canary, substitute throughout as needed.
+- Replace `<USERNAME>` with your system username. 
+-Tip: Depending on what terminal you are running from, there may be escape characters messing things up, so try replacing `/` with `\\`
+
 
 - Run `node snapshot.js "<URL>"` . Insert any URL in place of `<URL>`. 
 
@@ -72,7 +127,19 @@ Wait for few seconds (adjust `const timeout = 6000;`  if too slow), and  `snapsh
 
 This next part is better than a lot of OCR software for common tasks- in my opinion.
 
-Edit the following lines in `python gpt4v_scraper.py`, replacing with your own website URL and then a system prompt (command to the GPT-4V API) about what to scrape for. See my example:
+Set up Python environment and install packages:
+```
+python3 -m venv myenv
+source myenv/bin/activate
+```
+
+```
+pip install -r requirements.txt
+```
+
+
+
+Edit the following lines in `gpt4v_scraper.py`, replacing with your own website URL and then a system prompt (command to the GPT-4V API) about what to scrape for. See my example:
 
 ```
 # Running the function w/ a example website + prompt
